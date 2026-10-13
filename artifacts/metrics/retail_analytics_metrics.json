@@ -1,0 +1,71 @@
+{
+  "forecasting": {
+    "naive_seasonal_7d": {
+      "model_name": "naive_seasonal_7d",
+      "mae": 18124.9,
+      "rmse": 33874.7,
+      "mape": 0.3024
+    },
+    "moving_average_7d": {
+      "model_name": "moving_average_7d",
+      "mae": 25728.35,
+      "rmse": 39449.83,
+      "mape": 0.3334
+    },
+    "holt_winters_exponential_smoothing": {
+      "model_name": "holt_winters_exponential_smoothing",
+      "mae": 17603.63,
+      "rmse": 31459.96,
+      "mape": 0.2488
+    },
+    "train_period": "2010-12-01 to 2011-11-11",
+    "test_period": "2011-11-12 to 2011-12-09",
+    "test_days": 28
+  },
+  "segmentation": {
+    "total_segmented_customers": 4338,
+    "n_clusters": 4,
+    "clusters": [
+      {
+        "cluster_id": 0,
+        "customer_count": 713,
+        "pct_of_customers": 16.44,
+        "avg_recency_days": 12.2,
+        "avg_frequency_orders": 13.8,
+        "avg_monetary_spend": 8088.02
+      },
+      {
+        "cluster_id": 1,
+        "customer_count": 1622,
+        "pct_of_customers": 37.39,
+        "avg_recency_days": 181.5,
+        "avg_frequency_orders": 1.3,
+        "avg_monetary_spend": 341.0
+      },
+      {
+        "cluster_id": 2,
+        "customer_count": 837,
+        "pct_of_customers": 19.29,
+        "avg_recency_days": 17.7,
+        "avg_frequency_orders": 2.2,
+        "avg_monetary_spend": 557.32
+      },
+      {
+        "cluster_id": 3,
+        "customer_count": 1166,
+        "pct_of_customers": 26.88,
+        "avg_recency_days": 71.6,
+        "avg_frequency_orders": 4.1,
+        "avg_monetary_spend": 1801.78
+      }
+    ]
+  },
+  "clean_summary": {
+    "dataset_key": "online_retail",
+    "initial_rows": 541909,
+    "final_rows": 524878,
+    "rows_removed": 17031,
+    "cancelled_orders_removed": 9288,
+    "invalid_price_qty_removed": 2517
+  }
+}

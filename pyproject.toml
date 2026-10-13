@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=65.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finsight"
+version = "0.1.0"
+description = "FinSight — Banking Intelligence & Customer Analytics Platform"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "FinSight Analytics Lead" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: MacOS",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+ignore = [
+    "BLE001",  # Allow broad exception handling for pipeline resilience
+    "G201",    # Allow logger.error(..., exc_info=True)
+    "RUF059",  # Allow dummy unpacked variables
+    "F841",    # Allow unused variable assignments in scripts
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::FutureWarning",
+]

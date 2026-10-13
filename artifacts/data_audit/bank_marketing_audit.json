@@ -1,0 +1,285 @@
+{
+  "dataset_key": "bank_marketing",
+  "dataset_name": "Bank Marketing",
+  "source_url": "https://archive.ics.uci.edu/dataset/222/bank+marketing",
+  "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "shape": {
+    "rows": 41188,
+    "columns": 21
+  },
+  "duplicate_rows": 12,
+  "duplicate_pct": 0.03,
+  "total_missing_cells": 0,
+  "target_summary": {
+    "target_name": "y",
+    "distribution": {
+      "no": 36548,
+      "yes": 4640
+    },
+    "class_ratio": {
+      "no": 0.8873,
+      "yes": 0.1127
+    },
+    "positive_label": "yes"
+  },
+  "columns": {
+    "age": {
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 78,
+      "min": 17.0,
+      "max": 98.0,
+      "mean": 40.0241,
+      "std": 10.4212,
+      "median": 38.0,
+      "zeros_count": 0,
+      "negative_count": 0
+    },
+    "job": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 12,
+      "top_categories": {
+        "admin.": 10422,
+        "blue-collar": 9254,
+        "technician": 6743,
+        "services": 3969,
+        "management": 2924
+      }
+    },
+    "marital": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 4,
+      "top_categories": {
+        "married": 24928,
+        "single": 11568,
+        "divorced": 4612,
+        "unknown": 80
+      }
+    },
+    "education": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 8,
+      "top_categories": {
+        "university.degree": 12168,
+        "high.school": 9515,
+        "basic.9y": 6045,
+        "professional.course": 5243,
+        "basic.4y": 4176
+      }
+    },
+    "default": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 3,
+      "top_categories": {
+        "no": 32588,
+        "unknown": 8597,
+        "yes": 3
+      }
+    },
+    "housing": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 3,
+      "top_categories": {
+        "yes": 21576,
+        "no": 18622,
+        "unknown": 990
+      }
+    },
+    "loan": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 3,
+      "top_categories": {
+        "no": 33950,
+        "yes": 6248,
+        "unknown": 990
+      }
+    },
+    "contact": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 2,
+      "top_categories": {
+        "cellular": 26144,
+        "telephone": 15044
+      }
+    },
+    "month": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 10,
+      "top_categories": {
+        "may": 13769,
+        "jul": 7174,
+        "aug": 6178,
+        "jun": 5318,
+        "nov": 4101
+      }
+    },
+    "day_of_week": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 5,
+      "top_categories": {
+        "thu": 8623,
+        "mon": 8514,
+        "wed": 8134,
+        "tue": 8090,
+        "fri": 7827
+      }
+    },
+    "duration": {
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 1544,
+      "min": 0.0,
+      "max": 4918.0,
+      "mean": 258.285,
+      "std": 259.2792,
+      "median": 180.0,
+      "zeros_count": 4,
+      "negative_count": 0
+    },
+    "campaign": {
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 42,
+      "min": 1.0,
+      "max": 56.0,
+      "mean": 2.5676,
+      "std": 2.77,
+      "median": 2.0,
+      "zeros_count": 0,
+      "negative_count": 0
+    },
+    "pdays": {
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 27,
+      "min": 0.0,
+      "max": 999.0,
+      "mean": 962.4755,
+      "std": 186.9109,
+      "median": 999.0,
+      "zeros_count": 15,
+      "negative_count": 0
+    },
+    "previous": {
+      "dtype": "int64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 8,
+      "min": 0.0,
+      "max": 7.0,
+      "mean": 0.173,
+      "std": 0.4949,
+      "median": 0.0,
+      "zeros_count": 35563,
+      "negative_count": 0
+    },
+    "poutcome": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 3,
+      "top_categories": {
+        "nonexistent": 35563,
+        "failure": 4252,
+        "success": 1373
+      }
+    },
+    "emp.var.rate": {
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 10,
+      "min": -3.4,
+      "max": 1.4,
+      "mean": 0.0819,
+      "std": 1.571,
+      "median": 1.1,
+      "zeros_count": 0,
+      "negative_count": 17191
+    },
+    "cons.price.idx": {
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 26,
+      "min": 92.201,
+      "max": 94.767,
+      "mean": 93.5757,
+      "std": 0.5788,
+      "median": 93.749,
+      "zeros_count": 0,
+      "negative_count": 0
+    },
+    "cons.conf.idx": {
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 26,
+      "min": -50.8,
+      "max": -26.9,
+      "mean": -40.5026,
+      "std": 4.6282,
+      "median": -41.8,
+      "zeros_count": 0,
+      "negative_count": 41188
+    },
+    "euribor3m": {
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 316,
+      "min": 0.634,
+      "max": 5.045,
+      "mean": 3.6213,
+      "std": 1.7344,
+      "median": 4.857,
+      "zeros_count": 0,
+      "negative_count": 0
+    },
+    "nr.employed": {
+      "dtype": "float64",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 11,
+      "min": 4963.6,
+      "max": 5228.1,
+      "mean": 5167.0359,
+      "std": 72.2515,
+      "median": 5191.0,
+      "zeros_count": 0,
+      "negative_count": 0
+    },
+    "y": {
+      "dtype": "str",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "n_unique": 2,
+      "top_categories": {
+        "no": 36548,
+        "yes": 4640
+      }
+    }
+  }
+}

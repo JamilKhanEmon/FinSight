@@ -1,0 +1,33 @@
+project:
+  name: "FinSight"
+  full_name: "FinSight — Banking Intelligence & Customer Analytics Platform"
+  version: "0.1.0"
+  random_seed: 42
+  environment: "development"
+
+hardware:
+  platform: "macOS Apple Silicon (M5)"
+  memory_ram_gb: 16
+  recommended_n_jobs: 4
+  cpu_only: true
+  max_memory_threshold_percent: 85
+  chunk_size_records: 50000
+
+paths:
+  data_raw: "data/raw"
+  data_interim: "data/interim"
+  data_processed: "data/processed"
+  artifacts: "artifacts"
+  models: "artifacts/models"
+  metrics: "artifacts/metrics"
+  figures: "artifacts/figures"
+  reports: "artifacts/reports"
+  data_audit: "artifacts/data_audit"
+  experiments: "artifacts/experiments"
+  business: "artifacts/business"
+  research: "artifacts/research"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
+  file: "artifacts/reports/finsight.log"

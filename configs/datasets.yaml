@@ -1,0 +1,107 @@
+datasets:
+  bank_marketing:
+    name: "Bank Marketing"
+    source_url: "https://archive.ics.uci.edu/dataset/222/bank+marketing"
+    download_url: "https://archive.ics.uci.edu/static/public/222/bank+marketing.zip"
+    license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    file_format: "csv"
+    delimiter: ";"
+    header_row: 0
+    raw_subpath: "bank_marketing/bank-additional-full.csv"
+    target: "y"
+    target_positive_label: "yes"
+    target_negative_label: "no"
+    id_column: null
+    time_column: null
+    primary_task: "marketing_response_prediction"
+    prospective_exclude_columns: ["duration"]
+    retrospective_include_columns: []
+    description: "Direct marketing campaigns (phone calls) of a Portuguese banking institution to predict term deposit subscription."
+
+  customer_churn:
+    name: "Customer Churn"
+    source_url: "https://www.kaggle.com/datasets/shrutimechlearn/churn-modelling"
+    download_url: "https://huggingface.co/datasets/reiner9/Churn_Modelling/resolve/main/Churn_Modelling.csv"
+    license: "Open Data Commons Open Database License (ODbL) / Public"
+    file_format: "csv"
+    delimiter: ","
+    header_row: 0
+    raw_subpath: "customer_churn/Churn_Modelling.csv"
+    target: "Exited"
+    target_positive_label: 1
+    target_negative_label: 0
+    id_column: "CustomerId"
+    time_column: null
+    primary_task: "customer_churn_prediction"
+    exclude_columns: ["RowNumber", "CustomerId", "Surname"]
+    description: "Customer churn dataset detailing customer demographics, credit scores, account balance, products, and activity status."
+
+  credit_risk:
+    name: "Credit Risk"
+    source_url: "https://www.kaggle.com/datasets/laotse/credit-risk-dataset"
+    download_url: "https://raw.githubusercontent.com/PhilChodrow/ml-notes/main/data/credit-risk/credit_risk_dataset.csv"
+    license: "CC0: Public Domain"
+    file_format: "csv"
+    delimiter: ","
+    header_row: 0
+    raw_subpath: "credit_risk/credit_risk_dataset.csv"
+    target: "loan_status"
+    target_positive_label: 1
+    target_negative_label: 0
+    id_column: null
+    time_column: null
+    primary_task: "credit_default_prediction"
+    exclude_columns: []
+    description: "Credit risk dataset detailing applicant age, income, home ownership, employment length, loan intent, loan grade, loan amount, and default status."
+
+  fraud_detection:
+    name: "Transaction Fraud Detection"
+    source_url: "https://www.kaggle.com/competitions/transaction-fraud-detection/data"
+    download_url: "https://huggingface.co/datasets/JEFFREY-VERDIERE/Creditcard/resolve/main/creditcard.csv"
+    license: "Database Contents License (DbCL) / Research Open Data"
+    file_format: "csv"
+    delimiter: ","
+    header_row: 0
+    raw_subpath: "fraud_detection/creditcard.csv"
+    target: "Class"
+    target_positive_label: 1
+    target_negative_label: 0
+    id_column: null
+    time_column: "Time"
+    primary_task: "fraud_detection"
+    exclude_columns: []
+    description: "Highly imbalanced credit card transaction dataset with PCA-transformed anonymized features and transaction amounts."
+
+  credit_card_default_benchmark:
+    name: "Credit Card Default Benchmark"
+    source_url: "https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients"
+    download_url: "https://archive.ics.uci.edu/static/public/350/default+of+credit+card+clients.zip"
+    license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    file_format: "xls"
+    delimiter: null
+    header_row: 1
+    raw_subpath: "credit_card_default/default of credit card clients.xls"
+    target: "default payment next month"
+    target_positive_label: 1
+    target_negative_label: 0
+    id_column: "ID"
+    time_column: null
+    primary_task: "credit_default_benchmark"
+    exclude_columns: ["ID"]
+    description: "Credit card clients in Taiwan comparing credit limits, demographics, 6-month repayment history, bill amounts, and next month default."
+
+  online_retail:
+    name: "Online Retail Transaction Benchmark"
+    source_url: "https://archive.ics.uci.edu/dataset/352/online+retail"
+    download_url: "https://archive.ics.uci.edu/static/public/352/online+retail.zip"
+    license: "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    file_format: "xlsx"
+    delimiter: null
+    header_row: 0
+    raw_subpath: "online_retail/Online Retail.xlsx"
+    target: "Quantity"
+    id_column: "InvoiceNo"
+    time_column: "InvoiceDate"
+    primary_task: "time_series_forecasting"
+    exclude_columns: []
+    description: "Non-store online retail transactions (UK, 2010-2011) for transactional aggregation, customer frequency/monetary analysis, and time-series demand forecasting."

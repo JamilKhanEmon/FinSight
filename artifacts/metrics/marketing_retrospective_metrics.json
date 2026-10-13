@@ -1,0 +1,260 @@
+{
+  "logistic_regression": {
+    "model_name": "logistic_regression",
+    "decision_threshold": 0.5,
+    "roc_auc": 0.9404,
+    "pr_auc": 0.5921,
+    "precision": 0.4488,
+    "recall": 0.9019,
+    "f1_score": 0.5994,
+    "accuracy": 0.8641,
+    "brier_score": 0.1007,
+    "confusion_matrix": [
+      [
+        6280,
+        1028
+      ],
+      [
+        91,
+        837
+      ]
+    ],
+    "sample_size": 8236,
+    "positive_rate": 0.1127,
+    "threshold_analysis": [
+      {
+        "threshold": 0.1,
+        "precision": 0.2393,
+        "recall": 0.9946,
+        "f1": 0.3858
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.2851,
+        "recall": 0.9925,
+        "f1": 0.4429
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.3191,
+        "recall": 0.9881,
+        "f1": 0.4824
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.3477,
+        "recall": 0.9828,
+        "f1": 0.5137
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.3732,
+        "recall": 0.9677,
+        "f1": 0.5387
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.3944,
+        "recall": 0.9537,
+        "f1": 0.558
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.4134,
+        "recall": 0.9407,
+        "f1": 0.5743
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.4326,
+        "recall": 0.9267,
+        "f1": 0.5898
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.4488,
+        "recall": 0.9019,
+        "f1": 0.5994
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.4703,
+        "recall": 0.8858,
+        "f1": 0.6143
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.4858,
+        "recall": 0.8491,
+        "f1": 0.618
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.5064,
+        "recall": 0.8039,
+        "f1": 0.6214
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.5274,
+        "recall": 0.7672,
+        "f1": 0.6251
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.5456,
+        "recall": 0.722,
+        "f1": 0.6215
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.5786,
+        "recall": 0.6627,
+        "f1": 0.6178
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.6057,
+        "recall": 0.5744,
+        "f1": 0.5896
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.6315,
+        "recall": 0.4838,
+        "f1": 0.5479
+      }
+    ],
+    "train_duration_sec": 0.17,
+    "model_type": "LogisticRegression"
+  },
+  "xgboost": {
+    "model_name": "xgboost",
+    "decision_threshold": 0.5,
+    "roc_auc": 0.951,
+    "pr_auc": 0.6697,
+    "precision": 0.465,
+    "recall": 0.931,
+    "f1_score": 0.6202,
+    "accuracy": 0.8715,
+    "brier_score": 0.0892,
+    "confusion_matrix": [
+      [
+        6314,
+        994
+      ],
+      [
+        64,
+        864
+      ]
+    ],
+    "sample_size": 8236,
+    "positive_rate": 0.1127,
+    "threshold_analysis": [
+      {
+        "threshold": 0.1,
+        "precision": 0.3104,
+        "recall": 0.9925,
+        "f1": 0.4729
+      },
+      {
+        "threshold": 0.15,
+        "precision": 0.3374,
+        "recall": 0.9881,
+        "f1": 0.503
+      },
+      {
+        "threshold": 0.2,
+        "precision": 0.3602,
+        "recall": 0.9828,
+        "f1": 0.5272
+      },
+      {
+        "threshold": 0.25,
+        "precision": 0.3794,
+        "recall": 0.9795,
+        "f1": 0.5469
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.3965,
+        "recall": 0.9741,
+        "f1": 0.5636
+      },
+      {
+        "threshold": 0.35,
+        "precision": 0.4148,
+        "recall": 0.9677,
+        "f1": 0.5807
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.4269,
+        "recall": 0.9601,
+        "f1": 0.591
+      },
+      {
+        "threshold": 0.45,
+        "precision": 0.4425,
+        "recall": 0.9461,
+        "f1": 0.603
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.465,
+        "recall": 0.931,
+        "f1": 0.6202
+      },
+      {
+        "threshold": 0.55,
+        "precision": 0.4818,
+        "recall": 0.9127,
+        "f1": 0.6307
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.4994,
+        "recall": 0.8912,
+        "f1": 0.6401
+      },
+      {
+        "threshold": 0.65,
+        "precision": 0.5176,
+        "recall": 0.8578,
+        "f1": 0.6456
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.5424,
+        "recall": 0.8265,
+        "f1": 0.655
+      },
+      {
+        "threshold": 0.75,
+        "precision": 0.5744,
+        "recall": 0.778,
+        "f1": 0.6609
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.6051,
+        "recall": 0.6918,
+        "f1": 0.6456
+      },
+      {
+        "threshold": 0.85,
+        "precision": 0.6427,
+        "recall": 0.597,
+        "f1": 0.619
+      },
+      {
+        "threshold": 0.9,
+        "precision": 0.7209,
+        "recall": 0.4009,
+        "f1": 0.5152
+      }
+    ],
+    "train_duration_sec": 0.24,
+    "model_type": "XGBClassifier"
+  }
+}
