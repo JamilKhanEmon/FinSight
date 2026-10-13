@@ -11,7 +11,7 @@ import sys
 import time
 
 from finsight.analytics.retail_analytics import run_retail_pipeline
-from finsight.experiments.research_experiment import run_baseline_vs_engineered_experiment
+from finsight.experiments.paper_transferability_study import run_full_paper_transferability_study
 from finsight.pipeline.churn_pipeline import run_churn_pipeline
 from finsight.pipeline.credit_card_default_pipeline import run_credit_card_default_pipeline
 from finsight.pipeline.credit_risk_pipeline import run_credit_risk_pipeline
@@ -28,7 +28,7 @@ TASK_RUNNERS = {
     "fraud": ("Transaction Fraud Detection", run_fraud_pipeline),
     "benchmark": ("Credit Card Default Benchmark (UCI 350)", run_credit_card_default_pipeline),
     "retail": ("Online Retail Analytics & Time-Series Forecasting", run_retail_pipeline),
-    "research": ("Research Feature Engineering Experiment", run_baseline_vs_engineered_experiment),
+    "research": ("Research Paper Transferability & Ablation Study", run_full_paper_transferability_study),
 }
 
 

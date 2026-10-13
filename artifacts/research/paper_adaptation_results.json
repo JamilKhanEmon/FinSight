@@ -1,0 +1,134 @@
+{
+  "bank_marketing": {
+    "dataset_key": "bank_marketing",
+    "n_samples": 41176,
+    "n_original_features": 9,
+    "n_pca_components": 7,
+    "cumulative_explained_variance": 0.9566,
+    "baseline": {
+      "model_name": "Baseline (Voting Ensemble)",
+      "accuracy": 0.8979,
+      "precision": 0.6693,
+      "recall_sensitivity": 0.1853,
+      "specificity": 0.9884,
+      "f1_score": 0.2903,
+      "roc_auc": 0.8027,
+      "pr_auc": 0.4614
+    },
+    "proposed": {
+      "model_name": "Proposed Research (Interactions + PCA 95% + Voting)",
+      "accuracy": 0.8985,
+      "precision": 0.6704,
+      "recall_sensitivity": 0.195,
+      "specificity": 0.9878,
+      "f1_score": 0.3022,
+      "roc_auc": 0.7965,
+      "pr_auc": 0.4593
+    },
+    "delta": {
+      "accuracy": 0.0006,
+      "f1_score": 0.0119,
+      "roc_auc": -0.0062,
+      "pr_auc": -0.0021
+    }
+  },
+  "customer_churn": {
+    "dataset_key": "customer_churn",
+    "n_samples": 10000,
+    "n_original_features": 8,
+    "n_pca_components": 13,
+    "cumulative_explained_variance": 0.9581,
+    "baseline": {
+      "model_name": "Baseline (Voting Ensemble)",
+      "accuracy": 0.8605,
+      "precision": 0.8404,
+      "recall_sensitivity": 0.3882,
+      "specificity": 0.9812,
+      "f1_score": 0.5311,
+      "roc_auc": 0.8485,
+      "pr_auc": 0.6777
+    },
+    "proposed": {
+      "model_name": "Proposed Research (Interactions + PCA 95% + Voting)",
+      "accuracy": 0.85,
+      "precision": 0.8282,
+      "recall_sensitivity": 0.3317,
+      "specificity": 0.9824,
+      "f1_score": 0.4737,
+      "roc_auc": 0.8332,
+      "pr_auc": 0.6383
+    },
+    "delta": {
+      "accuracy": -0.0105,
+      "f1_score": -0.0574,
+      "roc_auc": -0.0153,
+      "pr_auc": -0.0394
+    }
+  },
+  "credit_risk": {
+    "dataset_key": "credit_risk",
+    "n_samples": 32409,
+    "n_original_features": 7,
+    "n_pca_components": 13,
+    "cumulative_explained_variance": 0.9553,
+    "baseline": {
+      "model_name": "Baseline (Voting Ensemble)",
+      "accuracy": 0.8693,
+      "precision": 0.7852,
+      "recall_sensitivity": 0.5543,
+      "specificity": 0.9575,
+      "f1_score": 0.6499,
+      "roc_auc": 0.8803,
+      "pr_auc": 0.7385
+    },
+    "proposed": {
+      "model_name": "Proposed Research (Interactions + PCA 95% + Voting)",
+      "accuracy": 0.8479,
+      "precision": 0.7506,
+      "recall_sensitivity": 0.4563,
+      "specificity": 0.9575,
+      "f1_score": 0.5675,
+      "roc_auc": 0.8557,
+      "pr_auc": 0.6825
+    },
+    "delta": {
+      "accuracy": -0.0214,
+      "f1_score": -0.0824,
+      "roc_auc": -0.0246,
+      "pr_auc": -0.056
+    }
+  },
+  "credit_card_default_benchmark": {
+    "dataset_key": "credit_card_default_benchmark",
+    "n_samples": 29965,
+    "n_original_features": 23,
+    "n_pca_components": 21,
+    "cumulative_explained_variance": 0.9507,
+    "baseline": {
+      "model_name": "Baseline (Voting Ensemble)",
+      "accuracy": 0.8183,
+      "precision": 0.6826,
+      "recall_sensitivity": 0.3341,
+      "specificity": 0.9559,
+      "f1_score": 0.4486,
+      "roc_auc": 0.7665,
+      "pr_auc": 0.5507
+    },
+    "proposed": {
+      "model_name": "Proposed Research (Interactions + PCA 95% + Voting)",
+      "accuracy": 0.8099,
+      "precision": 0.6432,
+      "recall_sensitivity": 0.3167,
+      "specificity": 0.9501,
+      "f1_score": 0.4245,
+      "roc_auc": 0.7528,
+      "pr_auc": 0.5268
+    },
+    "delta": {
+      "accuracy": -0.0084,
+      "f1_score": -0.0241,
+      "roc_auc": -0.0137,
+      "pr_auc": -0.0239
+    }
+  }
+}

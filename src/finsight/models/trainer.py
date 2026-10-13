@@ -9,7 +9,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.dummy import DummyClassifier
-from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier, VotingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeClassifier
@@ -46,6 +46,18 @@ def create_model_instance(model_type: str, params: dict[str, Any]):
             max_depth=params.get("max_depth", 5),
             learning_rate=params.get("learning_rate", 0.08),
             random_state=params.get("random_state", 42),
+        )
+    elif model_type == "VotingClassifier":
+        rf = RandomForestClassifier(n_estimators=100, max_depth=8, random_state=42, n_jobs=4)
+        lr = LogisticRegression(max_iter=1000, random_state=42)
+        xgb = (
+            XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.08, random_state=42, n_jobs=4)
+            if XGBOOST_AVAILABLE
+            else HistGradientBoostingClassifier(random_state=42)
+        )
+        return VotingClassifier(
+            estimators=[("rf", rf), ("lr", lr), ("xgb", xgb)],
+            voting="soft",
         )
     else:
         raise ValueError(f"Unsupported model type: {model_type}")

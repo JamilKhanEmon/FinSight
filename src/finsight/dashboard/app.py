@@ -473,31 +473,60 @@ elif menu == "Model Performance Comparison":
 # 10. Research & Feature Engineering
 # ==============================================================================
 elif menu == "Research & Feature Engineering":
-    st.title("🔬 Research & Feature Engineering Experiments")
-    st.markdown(
-        "Controlled experiments investigating whether domain-informed non-linear transformations "
-        "provide statistically validated improvements over standard baseline pipelines."
+    st.title("🔬 Published Research Adaptation: Interaction-Focused Feature Engineering & PCA")
+    st.markdown("""
+    **Adapted Academic Source**:  
+    📄 *Harmonization of Heart Disease Dataset for Accurate Diagnosis: A Machine Learning Approach Enhanced by Feature Engineering*  
+    **Authors**: Jamil Khan Emon et al.  
+    **Published in**: *Computers, Materials & Continua (CMC)*, Vol. 82, No. 3, 2025 (Q2, SCI, Scopus)  
+    🔗 [https://www.techscience.com/cmc/v82n3/59942](https://www.techscience.com/cmc/v82n3/59942)
+    """)
+
+    st.info(
+        "🧠 **Transferability Framework**: Adapting the 3 core methodological pillars from Jamil Khan Emon et al. (CMC 2025) "
+        "across retail banking datasets: (1) Statistical Pairwise Interaction & Ratio Generation, "
+        "(2) Dimensionality Reduction via PCA retaining 95% variance, and (3) Soft-Voting Ensemble (Random Forest + XGBoost + Logistic Regression)."
     )
 
-    res_metrics = load_json_artifact(ARTIFACTS_DIR / "research" / "research_experiment_metrics.json")
-    if res_metrics:
-        r_rows = []
-        for m_name, d in res_metrics.items():
-            r_rows.append({
-                "Model": m_name,
-                "Baseline PR-AUC": d["baseline"]["pr_auc"],
-                "Engineered PR-AUC": d["engineered"]["pr_auc"],
-                "Δ PR-AUC": f"{d['delta_pr_auc']:+.4f}",
-                "Baseline ROC-AUC": d["baseline"]["roc_auc"],
-                "Engineered ROC-AUC": d["engineered"]["roc_auc"],
-                "Δ ROC-AUC": f"{d['delta_roc_auc']:+.4f}",
+    paper_results = load_json_artifact(ARTIFACTS_DIR / "research" / "paper_adaptation_results.json")
+    if paper_results:
+        st.subheader("📊 Cross-Dataset Transferability & Ablation Leaderboard")
+        rows = []
+        for d_key, r in paper_results.items():
+            b = r["baseline"]
+            p = r["proposed"]
+            rows.append({
+                "Dataset": d_key,
+                "Pipeline": "Baseline (Imputation + Scaling)",
+                "Original Features": r["n_original_features"],
+                "PCA Comp (95% Var)": "-",
+                "Accuracy": f"{b['accuracy']:.2%}",
+                "Precision": f"{b['precision']:.2%}",
+                "Sensitivity / Recall": f"{b['recall_sensitivity']:.2%}",
+                "Specificity": f"{b['specificity']:.2%}",
+                "F1 Score": f"{b['f1_score']:.4f}",
+                "ROC-AUC": f"{b['roc_auc']:.4f}",
+                "PR-AUC": f"{b['pr_auc']:.4f}",
             })
-        st.table(pd.DataFrame(r_rows))
+            rows.append({
+                "Dataset": d_key,
+                "Pipeline": "⭐ Proposed (Interactions + PCA 95% + Voting)",
+                "Original Features": r["n_original_features"],
+                "PCA Comp (95% Var)": r["n_pca_components"],
+                "Accuracy": f"{p['accuracy']:.2%}",
+                "Precision": f"{p['precision']:.2%}",
+                "Sensitivity / Recall": f"{p['recall_sensitivity']:.2%}",
+                "Specificity": f"{p['specificity']:.2%}",
+                "F1 Score": f"{p['f1_score']:.4f}",
+                "ROC-AUC": f"{p['roc_auc']:.4f}",
+                "PR-AUC": f"{p['pr_auc']:.4f}",
+            })
+        st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
-    res_md = load_text_artifact(ARTIFACTS_DIR / "research" / "methodology_extraction_and_placeholder.md")
-    if res_md:
-        with st.expander("📖 View Research Transferability Methodology & Notes"):
-            st.markdown(res_md)
+    paper_md = load_text_artifact(ARTIFACTS_DIR / "research" / "paper_methodology_and_adaptation_report.md")
+    if paper_md:
+        with st.expander("📖 View Full Academic Methodology & Adaptation Report", expanded=True):
+            st.markdown(paper_md)
 
 
 # ==============================================================================

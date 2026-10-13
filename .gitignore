@@ -58,4 +58,8 @@ artifacts/models/*.joblib
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Cloned research repository
+artifacts/research/user_research_repo/
+
 .ruff_cache/
