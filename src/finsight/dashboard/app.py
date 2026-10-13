@@ -493,40 +493,90 @@ elif menu == "Research & Feature Engineering":
         st.subheader("📊 Cross-Dataset Transferability & Ablation Leaderboard")
         rows = []
         for d_key, r in paper_results.items():
-            b = r["baseline"]
-            p = r["proposed"]
+            b = r.get("baseline_single_rf_metrics") or r.get("baseline", {})
+            p = r.get("proposed_voting_metrics") or r.get("proposed", {})
+            cv = r.get("kfold_cv_results", {})
             rows.append({
                 "Dataset": d_key,
-                "Pipeline": "Baseline (Imputation + Scaling)",
-                "Original Features": r["n_original_features"],
-                "PCA Comp (95% Var)": "-",
-                "Accuracy": f"{b['accuracy']:.2%}",
-                "Precision": f"{b['precision']:.2%}",
-                "Sensitivity / Recall": f"{b['recall_sensitivity']:.2%}",
-                "Specificity": f"{b['specificity']:.2%}",
-                "F1 Score": f"{b['f1_score']:.4f}",
-                "ROC-AUC": f"{b['roc_auc']:.4f}",
-                "PR-AUC": f"{b['pr_auc']:.4f}",
+                "Pipeline": "Baseline (Single RF, Raw Features)",
+                "Original Features": r.get("n_original_features", "-"),
+                "Engineered Features": "-",
+                "PCA (95% Var)": "-",
+                "Accuracy": f"{b.get('accuracy', 0):.2%}",
+                "Sensitivity": f"{b.get('sensitivity_recall', 0):.2%}",
+                "Specificity": f"{b.get('specificity', 0):.2%}",
+                "F1 Score": f"{b.get('f1_score', 0):.4f}",
+                "ROC-AUC": f"{b.get('roc_auc', 0):.4f}",
+                "CV Acc": "-",
             })
             rows.append({
                 "Dataset": d_key,
                 "Pipeline": "⭐ Proposed (Interactions + PCA 95% + Voting)",
-                "Original Features": r["n_original_features"],
-                "PCA Comp (95% Var)": r["n_pca_components"],
-                "Accuracy": f"{p['accuracy']:.2%}",
-                "Precision": f"{p['precision']:.2%}",
-                "Sensitivity / Recall": f"{p['recall_sensitivity']:.2%}",
-                "Specificity": f"{p['specificity']:.2%}",
-                "F1 Score": f"{p['f1_score']:.4f}",
-                "ROC-AUC": f"{p['roc_auc']:.4f}",
-                "PR-AUC": f"{p['pr_auc']:.4f}",
+                "Original Features": r.get("n_original_features", "-"),
+                "Engineered Features": r.get("n_engineered_features", "-"),
+                "PCA (95% Var)": r.get("n_pca_components", "-"),
+                "Accuracy": f"{p.get('accuracy', 0):.2%}",
+                "Sensitivity": f"{p.get('sensitivity_recall', 0):.2%}",
+                "Specificity": f"{p.get('specificity', 0):.2%}",
+                "F1 Score": f"{p.get('f1_score', 0):.4f}",
+                "ROC-AUC": f"{p.get('roc_auc', 0):.4f}",
+                "CV Acc": f"{cv.get('mean_accuracy', 0):.2%}" if cv else "-",
             })
         st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
+        st.subheader("🔍 Deep-Dive: Individual Models & Correlation Analysis by Dataset")
+        selected_ds = st.selectbox("Select Dataset to Inspect:", list(paper_results.keys()))
+        if selected_ds in paper_results:
+            ds_data = paper_results[selected_ds]
+            c1, c2, c3, c4 = st.columns(4)
+            c1.metric("Original Features", ds_data.get("n_original_features"))
+            c2.metric("Engineered Features", ds_data.get("n_engineered_features"))
+            c3.metric("PCA Components (95% Var)", ds_data.get("n_pca_components"))
+            cv_res = ds_data.get("kfold_cv_results", {})
+            c4.metric("5-Fold Mean Accuracy", f"{cv_res.get('mean_accuracy', 0):.2%}")
+
+            # Individual models breakdown
+            ind_models = ds_data.get("individual_models_metrics", {})
+            if ind_models:
+                st.markdown("##### 🤖 Individual Models vs. Voting Ensemble Performance & Runtimes")
+                m_rows = []
+                for m_name, m_val in ind_models.items():
+                    m_rows.append({
+                        "Model": m_name,
+                        "Accuracy": f"{m_val.get('accuracy', 0):.2%}",
+                        "Precision": f"{m_val.get('precision', 0):.2%}",
+                        "Sensitivity (Recall)": f"{m_val.get('sensitivity_recall', 0):.2%}",
+                        "Specificity": f"{m_val.get('specificity', 0):.2%}",
+                        "F1 Score": f"{m_val.get('f1_score', 0):.4f}",
+                        "ROC-AUC": f"{m_val.get('roc_auc', 0):.4f}",
+                        "Runtime (s)": f"{m_val.get('run_time_sec', 0):.3f}s",
+                    })
+                # Add voting ensemble
+                v_val = ds_data.get("proposed_voting_metrics", {})
+                m_rows.append({
+                    "Model": "⭐ VotingClassifier (Soft)",
+                    "Accuracy": f"{v_val.get('accuracy', 0):.2%}",
+                    "Precision": f"{v_val.get('precision', 0):.2%}",
+                    "Sensitivity (Recall)": f"{v_val.get('sensitivity_recall', 0):.2%}",
+                    "Specificity": f"{v_val.get('specificity', 0):.2%}",
+                    "F1 Score": f"{v_val.get('f1_score', 0):.4f}",
+                    "ROC-AUC": f"{v_val.get('roc_auc', 0):.4f}",
+                    "Runtime (s)": f"{v_val.get('run_time_sec', 0):.3f}s",
+                })
+                st.dataframe(pd.DataFrame(m_rows), use_container_width=True)
+
+            # Top correlations
+            corrs = ds_data.get("top_pairwise_correlations", [])
+            if corrs:
+                st.markdown("##### 🔗 Top Screened Pairwise Correlations (Cell 15 Replication)")
+                corr_df = pd.DataFrame(corrs)[["combination", "correlation", "abs_correlation"]]
+                st.dataframe(corr_df.rename(columns={"combination": "Feature Combination (var1 * var2)"}), use_container_width=True)
+
     paper_md = load_text_artifact(ARTIFACTS_DIR / "research" / "paper_methodology_and_adaptation_report.md")
     if paper_md:
-        with st.expander("📖 View Full Academic Methodology & Adaptation Report", expanded=True):
+        with st.expander("📖 View Full Academic Methodology & Adaptation Report", expanded=False):
             st.markdown(paper_md)
+
 
 
 # ==============================================================================
