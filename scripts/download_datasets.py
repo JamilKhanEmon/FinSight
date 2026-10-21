@@ -184,11 +184,11 @@ def main():
     targets = list(DATASET_CONFIGS.keys()) if args.dataset == "all" else [args.dataset]
     results = {}
     for key in targets:
-        logger.info(f"\n--- Processing dataset: {key} ---")
+        logger.info(f"Processing dataset: {key}")
         ok = download_dataset(key, force=args.force)
         results[key] = "SUCCESS" if ok else "FAILED"
 
-    logger.info("\n=== Download Summary ===")
+    logger.info("Dataset Download Summary:")
     for key, status in results.items():
         logger.info(f"  {key:30s}: {status}")
 

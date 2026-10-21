@@ -2,9 +2,9 @@
 
 import pandas as pd
 
-from finsight.features.churn import ChurnDomainFeatureGenerator
-from finsight.features.credit_risk import CreditRiskDomainFeatureGenerator
-from finsight.features.fraud import FraudDomainFeatureGenerator
+from ai.features.churn import ChurnDomainFeatureGenerator
+from ai.features.credit_risk import CreditRiskDomainFeatureGenerator
+from ai.features.fraud import FraudDomainFeatureGenerator
 
 
 def test_churn_feature_generator():

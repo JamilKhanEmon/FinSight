@@ -1,25 +1,19 @@
-"""Unified CLI Pipeline Runner for FinSight Platform.
-
-Executes end-to-end data pipelines, model training, evaluation, and report generation.
-Supports selective execution and --force-retrain flags.
-"""
-
 from __future__ import annotations
 
 import argparse
 import sys
 import time
 
-from finsight.analytics.retail_analytics import run_retail_pipeline
-from finsight.experiments.statistical_banking_study import run_full_banking_statistical_study
-from finsight.pipeline.churn_pipeline import run_churn_pipeline
-from finsight.pipeline.credit_card_default_pipeline import run_credit_card_default_pipeline
-from finsight.pipeline.credit_risk_pipeline import run_credit_risk_pipeline
-from finsight.pipeline.fraud_pipeline import run_fraud_pipeline
-from finsight.pipeline.marketing_pipeline import run_marketing_pipeline
-from finsight.utils.logger import setup_logger
+from ai.analytics.retail_analytics import run_retail_pipeline
+from ai.pipelines.churn_pipeline import run_churn_pipeline
+from ai.pipelines.credit_card_default_pipeline import run_credit_card_default_pipeline
+from ai.pipelines.credit_risk_pipeline import run_credit_risk_pipeline
+from ai.pipelines.fraud_pipeline import run_fraud_pipeline
+from ai.pipelines.marketing_pipeline import run_marketing_pipeline
+from ai.utils.logger import setup_logger
+from research.experiments.statistical_banking_study import run_full_banking_statistical_study
 
-logger = setup_logger("finsight.pipeline_runner")
+logger = setup_logger("scripts.run_pipeline")
 
 TASK_RUNNERS = {
     "marketing": ("Bank Marketing Campaign Analytics", run_marketing_pipeline),
@@ -30,7 +24,6 @@ TASK_RUNNERS = {
     "retail": ("Online Retail Analytics & Time-Series Forecasting", run_retail_pipeline),
     "research": ("Statistical Intelligence & Adaptive Ensemble Study", run_full_banking_statistical_study),
 }
-
 
 
 def main():
@@ -57,25 +50,22 @@ def main():
 
     tasks_to_run = list(TASK_RUNNERS.keys()) if args.all else [args.task]
 
-    logger.info("=================================================================")
-    logger.info("   FinSight — Banking Intelligence & Customer Analytics Platform")
-    logger.info(f"   Tasks to execute: {', '.join(tasks_to_run)}")
-    logger.info(f"   Force retrain: {args.force_retrain}")
-    logger.info("=================================================================\n")
+    logger.info("FinSight Banking Intelligence Platform Pipeline Runner")
+    logger.info(f"Tasks scheduled: {', '.join(tasks_to_run)} | Force retrain: {args.force_retrain}")
 
     summary_records = {}
     overall_start = time.time()
 
     for task_key in tasks_to_run:
         task_name, runner_func = TASK_RUNNERS[task_key]
-        logger.info(f"\n>>> RUNNING TASK: [{task_key.upper()}] {task_name} <<<")
+        logger.info(f"Running task [{task_key}]: {task_name}")
         task_start = time.time()
 
         try:
             if task_key == "research":
-                result = runner_func()
+                runner_func()
             else:
-                result = runner_func(force_retrain=args.force_retrain)
+                runner_func(force_retrain=args.force_retrain)
             elapsed = round(time.time() - task_start, 2)
             summary_records[task_key] = {
                 "name": task_name,
@@ -83,10 +73,10 @@ def main():
                 "duration_sec": elapsed,
                 "error": None,
             }
-            logger.info(f">>> TASK [{task_key.upper()}] COMPLETED in {elapsed}s <<<\n")
+            logger.info(f"Task [{task_key}] completed in {elapsed}s")
         except Exception as exc:
             elapsed = round(time.time() - task_start, 2)
-            logger.error(f">>> TASK [{task_key.upper()}] FAILED after {elapsed}s: {exc}", exc_info=True)
+            logger.error(f"Task [{task_key}] failed after {elapsed}s: {exc}", exc_info=True)
             summary_records[task_key] = {
                 "name": task_name,
                 "status": "FAILED",
@@ -96,15 +86,10 @@ def main():
 
     overall_elapsed = round(time.time() - overall_start, 2)
 
-    logger.info("\n" + "=" * 70)
-    logger.info("                      FINSIGHT PIPELINE SUMMARY")
-    logger.info("=" * 70)
-    logger.info(f"{'Task Key':<15} | {'Status':<10} | {'Duration (s)':<12} | {'Task Name'}")
-    logger.info("-" * 70)
+    logger.info("FinSight Pipeline Execution Summary:")
     for k, rec in summary_records.items():
-        logger.info(f"{k:<15} | {rec['status']:<10} | {rec['duration_sec']:<12} | {rec['name']}")
-    logger.info("=" * 70)
-    logger.info(f"Total Execution Time: {overall_elapsed}s\n")
+        logger.info(f"  {k:15s} | {rec['status']:10s} | {rec['duration_sec']:>6.2f}s | {rec['name']}")
+    logger.info(f"Total execution time: {overall_elapsed}s")
 
 
 if __name__ == "__main__":

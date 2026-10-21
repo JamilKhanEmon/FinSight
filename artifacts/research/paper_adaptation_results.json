@@ -103,7 +103,7 @@
     "baseline_single_rf_metrics": {
       "model_name": "Baseline (Raw Features + Single RF)",
       "decision_threshold": 0.5,
-      "run_time_sec": 0.202,
+      "run_time_sec": 0.199,
       "accuracy": 0.8996,
       "precision": 0.6551,
       "sensitivity_recall": 0.2306,
@@ -122,7 +122,7 @@
       "RandomForest": {
         "model_name": "RandomForest",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.421,
+        "run_time_sec": 0.415,
         "accuracy": 0.8481,
         "precision": 0.3918,
         "sensitivity_recall": 0.6293,
@@ -140,7 +140,7 @@
       "XGBoost": {
         "model_name": "XGBoost",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.062,
+        "run_time_sec": 0.061,
         "accuracy": 0.8429,
         "precision": 0.3806,
         "sensitivity_recall": 0.6286,
@@ -158,7 +158,7 @@
       "HistGradientBoosting": {
         "model_name": "HistGradientBoosting",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.638,
+        "run_time_sec": 0.417,
         "accuracy": 0.8421,
         "precision": 0.3804,
         "sensitivity_recall": 0.6386,
@@ -176,7 +176,7 @@
       "LogisticRegression": {
         "model_name": "LogisticRegression",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.012,
+        "run_time_sec": 0.013,
         "accuracy": 0.7248,
         "precision": 0.249,
         "sensitivity_recall": 0.7155,
@@ -195,7 +195,7 @@
     "voting_ensemble_metrics": {
       "model_name": "Cost-Sensitive Voting Ensemble (0.50 Threshold)",
       "decision_threshold": 0.5,
-      "run_time_sec": 1.161,
+      "run_time_sec": 0.894,
       "accuracy": 0.8409,
       "precision": 0.379,
       "sensitivity_recall": 0.6444,
@@ -213,7 +213,7 @@
     "calibrated_voting_metrics": {
       "model_name": "Calibrated Voting Ensemble (0.6 Threshold)",
       "decision_threshold": 0.6,
-      "run_time_sec": 1.161,
+      "run_time_sec": 0.894,
       "accuracy": 0.8708,
       "precision": 0.4453,
       "sensitivity_recall": 0.5963,
@@ -574,7 +574,7 @@
     "baseline_single_rf_metrics": {
       "model_name": "Baseline (Raw Features + Single RF)",
       "decision_threshold": 0.5,
-      "run_time_sec": 0.108,
+      "run_time_sec": 0.105,
       "accuracy": 0.8627,
       "precision": 0.8006,
       "sensitivity_recall": 0.4337,
@@ -593,7 +593,7 @@
       "RandomForest": {
         "model_name": "RandomForest",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.176,
+        "run_time_sec": 0.179,
         "accuracy": 0.806,
         "precision": 0.5184,
         "sensitivity_recall": 0.6694,
@@ -629,7 +629,7 @@
       "HistGradientBoosting": {
         "model_name": "HistGradientBoosting",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.551,
+        "run_time_sec": 0.547,
         "accuracy": 0.797,
         "precision": 0.5012,
         "sensitivity_recall": 0.6645,
@@ -666,7 +666,7 @@
     "voting_ensemble_metrics": {
       "model_name": "Cost-Sensitive Voting Ensemble (0.50 Threshold)",
       "decision_threshold": 0.5,
-      "run_time_sec": 0.838,
+      "run_time_sec": 0.787,
       "accuracy": 0.8037,
       "precision": 0.5132,
       "sensitivity_recall": 0.6989,
@@ -684,7 +684,7 @@
     "calibrated_voting_metrics": {
       "model_name": "Calibrated Voting Ensemble (0.625 Threshold)",
       "decision_threshold": 0.625,
-      "run_time_sec": 0.838,
+      "run_time_sec": 0.787,
       "accuracy": 0.8493,
       "precision": 0.6587,
       "sensitivity_recall": 0.5401,
@@ -1084,7 +1084,7 @@
     "baseline_single_rf_metrics": {
       "model_name": "Baseline (Raw Features + Single RF)",
       "decision_threshold": 0.5,
-      "run_time_sec": 0.269,
+      "run_time_sec": 0.241,
       "accuracy": 0.8695,
       "precision": 0.7637,
       "sensitivity_recall": 0.5837,
@@ -1103,7 +1103,7 @@
       "RandomForest": {
         "model_name": "RandomForest",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.438,
+        "run_time_sec": 0.414,
         "accuracy": 0.8287,
         "precision": 0.5863,
         "sensitivity_recall": 0.7347,
@@ -1121,7 +1121,7 @@
       "XGBoost": {
         "model_name": "XGBoost",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.06,
+        "run_time_sec": 0.059,
         "accuracy": 0.8097,
         "precision": 0.5476,
         "sensitivity_recall": 0.7465,
@@ -1139,7 +1139,7 @@
       "HistGradientBoosting": {
         "model_name": "HistGradientBoosting",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.451,
+        "run_time_sec": 0.437,
         "accuracy": 0.8104,
         "precision": 0.5485,
         "sensitivity_recall": 0.7526,
@@ -1157,7 +1157,7 @@
       "LogisticRegression": {
         "model_name": "LogisticRegression",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.008,
+        "run_time_sec": 0.007,
         "accuracy": 0.7591,
         "precision": 0.4664,
         "sensitivity_recall": 0.7046,
@@ -1176,7 +1176,7 @@
     "voting_ensemble_metrics": {
       "model_name": "Cost-Sensitive Voting Ensemble (0.50 Threshold)",
       "decision_threshold": 0.5,
-      "run_time_sec": 0.978,
+      "run_time_sec": 0.921,
       "accuracy": 0.8127,
       "precision": 0.5529,
       "sensitivity_recall": 0.7502,
@@ -1194,7 +1194,7 @@
     "calibrated_voting_metrics": {
       "model_name": "Calibrated Voting Ensemble (0.575 Threshold)",
       "decision_threshold": 0.575,
-      "run_time_sec": 0.978,
+      "run_time_sec": 0.921,
       "accuracy": 0.8355,
       "precision": 0.6076,
       "sensitivity_recall": 0.6999,
@@ -1553,7 +1553,7 @@
     "baseline_single_rf_metrics": {
       "model_name": "Baseline (Raw Features + Single RF)",
       "decision_threshold": 0.5,
-      "run_time_sec": 0.422,
+      "run_time_sec": 0.402,
       "accuracy": 0.8206,
       "precision": 0.6811,
       "sensitivity_recall": 0.3555,
@@ -1572,7 +1572,7 @@
       "RandomForest": {
         "model_name": "RandomForest",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.74,
+        "run_time_sec": 0.699,
         "accuracy": 0.777,
         "precision": 0.4965,
         "sensitivity_recall": 0.5777,
@@ -1590,7 +1590,7 @@
       "XGBoost": {
         "model_name": "XGBoost",
         "decision_threshold": 0.5,
-        "run_time_sec": 0.102,
+        "run_time_sec": 0.105,
         "accuracy": 0.757,
         "precision": 0.462,
         "sensitivity_recall": 0.5998,
@@ -1608,7 +1608,7 @@
       "HistGradientBoosting": {
         "model_name": "HistGradientBoosting",
         "decision_threshold": 0.5,
-        "run_time_sec": 1.263,
+        "run_time_sec": 1.274,
         "accuracy": 0.757,
         "precision": 0.4632,
         "sensitivity_recall": 0.6204,
@@ -1645,7 +1645,7 @@
     "voting_ensemble_metrics": {
       "model_name": "Cost-Sensitive Voting Ensemble (0.50 Threshold)",
       "decision_threshold": 0.5,
-      "run_time_sec": 2.1,
+      "run_time_sec": 2.068,
       "accuracy": 0.7648,
       "precision": 0.4752,
       "sensitivity_recall": 0.6028,
@@ -1663,7 +1663,7 @@
     "calibrated_voting_metrics": {
       "model_name": "Calibrated Voting Ensemble (0.575 Threshold)",
       "decision_threshold": 0.575,
-      "run_time_sec": 2.1,
+      "run_time_sec": 2.068,
       "accuracy": 0.7934,
       "precision": 0.533,
       "sensitivity_recall": 0.5354,

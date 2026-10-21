@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from finsight.features.marketing import MarketingDomainFeatureGenerator
+from ai.features.marketing import MarketingDomainFeatureGenerator
 
 
 def test_prospective_excludes_duration():

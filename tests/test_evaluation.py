@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from finsight.evaluation.evaluator import evaluate_binary_classifier
+from ai.evaluation.evaluator import evaluate_binary_classifier
 
 
 def test_evaluate_binary_classifier_perfect():

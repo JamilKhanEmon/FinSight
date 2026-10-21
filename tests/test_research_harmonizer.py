@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 
-from finsight.features.research_harmonizer import (
+from ai.features.research_harmonizer import (
     ResearchInteractionGenerator,
     build_research_harmonized_pipeline,
 )

@@ -1,6 +1,4 @@
-"""Unit tests for configuration loaders."""
-
-from finsight.config.loader import get_datasets_config, get_models_config, get_project_config
+from ai.config.loader import get_datasets_config, get_models_config, get_project_config
 
 
 def test_project_config_loaded():

@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from finsight.cleaning.cleaner import DatasetCleaner
+from ai.data.cleaner import DatasetCleaner
 
 
 def test_clean_bank_marketing():

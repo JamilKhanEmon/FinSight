@@ -1,20 +1,18 @@
-"""Dataset Audit CLI Runner for FinSight Platform."""
-
 from __future__ import annotations
 
 import argparse
 
-from finsight.config.loader import get_datasets_config
-from finsight.ingestion.loader import load_raw_dataset
-from finsight.utils.logger import setup_logger
-from finsight.validation.schema import DataQualityAudit, validate_dataset_schema
+from ai.config.loader import get_datasets_config
+from ai.data.ingestion import load_raw_dataset
+from ai.data.validation import DataQualityAudit, validate_dataset_schema
+from ai.utils.logger import setup_logger
 
-logger = setup_logger("finsight.audit_runner")
+logger = setup_logger("scripts.run_audit")
 
 
 def audit_single_dataset(dataset_key: str, sample_rows: int | None = None) -> bool:
-    """Run data quality audit for a specific dataset."""
-    logger.info(f"Auditing dataset: {dataset_key}...")
+    """Runs data quality and schema audit for a specific dataset."""
+    logger.info(f"Auditing dataset: {dataset_key}")
     try:
         df = load_raw_dataset(dataset_key, nrows=sample_rows)
         is_valid = validate_dataset_schema(dataset_key, df)
@@ -42,13 +40,11 @@ def main():
 
     results = {}
     for key in targets:
-        logger.info("\n==========================================")
-        logger.info(f"AUDITING: {key}")
-        logger.info("==========================================")
+        logger.info(f"Starting audit for dataset: {key}")
         ok = audit_single_dataset(key, sample_rows=args.sample)
         results[key] = "PASSED" if ok else "FAILED"
 
-    logger.info("\n=== DATA AUDIT SUMMARY ===")
+    logger.info("Data Audit Summary:")
     for k, status in results.items():
         logger.info(f"  {k:32s}: {status}")
 

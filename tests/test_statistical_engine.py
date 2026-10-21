@@ -3,14 +3,14 @@
 import numpy as np
 import pandas as pd
 
-from finsight.features.statistical_feature_engine import (
+from ai.features.statistical_engine import (
     AdaptivePCATransformer,
     DomainFinancialRatioGenerator,
     StatisticalInteractionSelector,
     audit_categorical_chi_squared,
     build_banking_statistical_pipeline,
 )
-from finsight.models.ensemble_engine import (
+from ai.models.ensemble_engine import (
     build_cost_sensitive_ensemble,
     calibrate_optimal_threshold,
     compute_banking_diagnostics,
