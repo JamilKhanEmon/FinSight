@@ -7,9 +7,8 @@
 [![API Microservice](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![BI Dashboard](https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Automated Tests](https://img.shields.io/badge/Pytest-29_Passed_100%25-2EA44F?style=for-the-badge&logo=pytest&logoColor=white)](#)
-[![Code Style](https://img.shields.io/badge/Code_Style-Ruff_Clean-000000?style=for-the-badge&logo=ruff&logoColor=white)](https://github.com/astral-sh/ruff)
 [![Research Adaptation](https://img.shields.io/badge/Research-CMC_2025_SCI_Q2-8A2BE2?style=for-the-badge)](#-scientific-research-methodology-transferability-cmc-2025)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey?style=for-the-badge)](https://creativecommons.org/licenses/by/4.0/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
   <b>A production-grade, reproducible banking intelligence and predictive analytics suite engineered for institutional risk assessment, fraud mitigation, prospective campaign ranking, and customer lifecycle intelligence.</b>
@@ -85,41 +84,41 @@ FinSight adopts an enterprise Clean Architecture design with strict decoupling b
 
 ```mermaid
 flowchart TD
-    subgraph Data Tier ["1. Data Ingestion & Governance Tier"]
-        R1[UCI Bank Marketing 222] --> RAW[(data/raw/)]
-        R2[Customer Churn Modelling] --> RAW
-        R3[Credit Risk Underwriting] --> RAW
-        R4[ULB Transaction Fraud] --> RAW
-        R5[Taiwan Credit Card 350] --> RAW
-        R6[Online Retail UCI 352] --> RAW
-        RAW --> AUDIT[Data Quality & Audit Validator<br/>Missingness, Duplicates, Schema Integrity]
-        AUDIT --> CLEAN[Standardized Deduplication & Ingestion Manager]
+    subgraph DataTier ["1. Data Ingestion & Governance Tier"]
+        R1["UCI Bank Marketing 222"] --> RAW[("data/raw/")]
+        R2["Customer Churn Modelling"] --> RAW
+        R3["Credit Risk Underwriting"] --> RAW
+        R4["ULB Transaction Fraud"] --> RAW
+        R5["Taiwan Credit Card 350"] --> RAW
+        R6["Online Retail UCI 352"] --> RAW
+        RAW --> AUDIT["Data Quality & Audit Validator<br/>(Missingness, Duplicates, Schema Integrity)"]
+        AUDIT --> CLEAN["Standardized Deduplication & Cleaner"]
     end
 
-    subgraph Feature Tier ["2. Leakage-Free Statistical Engine"]
-        CLEAN --> SPLIT[Stratified Train-Test Splitter<br/>Strict Temporal Holdout for Retail Time-Series]
-        SPLIT --> FEAT[Domain Feature Transformers<br/>Interaction Ratios, Solvency Metrics, Macro Delinquency]
-        FEAT --> RES_METH[Research Adaptation Pipeline<br/>Pearson Screening, Chi-Sq Tests, Adaptive PCA 95%]
+    subgraph FeatureTier ["2. Leakage-Free Statistical Engine"]
+        CLEAN --> SPLIT["Stratified Train-Test Splitter<br/>(Strict Temporal Holdout for Time-Series)"]
+        SPLIT --> FEAT["Domain Feature Transformers<br/>(Solvency Metrics & Delinquency Ratios)"]
+        FEAT --> RES_METH["Research Adaptation Pipeline<br/>(Pearson Screening, Chi-Sq, Adaptive PCA 95%)"]
     end
 
-    subgraph Model Zoo ["3. Model Training & Evaluation Engine"]
-        FEAT --> TRAIN[Model Factory: LogReg, RF, XGBoost, Holt-Winters]
-        RES_METH --> ENS[Soft-Voting Ensemble Classifier]
-        TRAIN --> EVAL[Evaluation Matrix: ROC-AUC, PR-AUC, Brier Calibration]
+    subgraph ModelZoo ["3. Model Training & Evaluation Engine"]
+        FEAT --> TRAIN["Model Factory: LogReg, RF, XGBoost, Holt-Winters"]
+        RES_METH --> ENS["Soft-Voting Ensemble Classifier"]
+        TRAIN --> EVAL["Evaluation Matrix: ROC-AUC, PR-AUC, Brier Calibration"]
         ENS --> EVAL
-        EVAL --> THRESH[Cost-Sensitive Threshold Optimizer]
+        EVAL --> THRESH["Cost-Sensitive Threshold Optimizer"]
     end
 
     subgraph Persistence ["4. Artifacts & Versioning"]
-        THRESH --> ART_M[Serialized Pipelines: artifacts/models/*.joblib]
-        THRESH --> ART_MET[Metric JSONs: artifacts/metrics/*.json]
-        THRESH --> ART_REP[Markdown Reports: artifacts/reports/*.md]
-        THRESH --> ART_AUD[Audit Logs: artifacts/data_audit/*.json]
+        THRESH --> ART_M["Serialized Pipelines: artifacts/models/*.joblib"]
+        THRESH --> ART_MET["Metric JSONs: artifacts/metrics/*.json"]
+        THRESH --> ART_REP["Markdown Reports: artifacts/reports/*.md"]
+        THRESH --> ART_AUD["Audit Logs: artifacts/data_audit/*.json"]
     end
 
     subgraph Delivery ["5. Presentation & Microservices Layer"]
-        ART_M --> API[FastAPI Microservice<br/>Port :8000 | Pydantic v2 Schemas]
-        ART_MET --> DASH[Streamlit Executive Dashboard<br/>Port :8501 | Glassmorphic Dark UI]
+        ART_M --> API["FastAPI Microservice (Port 8000, Pydantic v2 Schemas)"]
+        ART_MET --> DASH["Streamlit Executive Dashboard (Port 8501, Dark UI)"]
         ART_REP --> DASH
         ART_AUD --> DASH
     end
@@ -220,15 +219,11 @@ FinSight Analytical Engine
 - **Class Imbalance:** 0.17% positive rate across 284,807 transactions.
 - **Dynamic 3-Tier Threshold Policy:**
   ```mermaid
-  stateDiagram-v2
-      [*] --> TransactionEvaluation
-      TransactionEvaluation --> Tier1_Approve: Probability < 0.20
-      TransactionEvaluation --> Tier2_StepUp: 0.20 <= Probability < 0.65
-      TransactionEvaluation --> Tier3_Decline: Probability >= 0.65
-
-      Tier1_Approve --> FrictionlessAuthorization: Instant Pass (99.2% of Volume)
-      Tier2_StepUp --> StepUpAuth: SMS OTP / Mobile App Biometric Push
-      Tier3_Decline --> HardDecline: Automated Freeze & Fraud Operations Queue
+  flowchart LR
+      A["Incoming Transaction"] --> B{"Model Risk Score"}
+      B -->|"Score < 0.20"| C["Tier 1: Instant Authorization<br/>(99.2% Frictionless Pass)"]
+      B -->|"0.20 <= Score < 0.65"| D["Tier 2: Step-Up Auth<br/>(SMS OTP / Mobile Push)"]
+      B -->|"Score >= 0.65"| E["Tier 3: Hard Freeze<br/>(Auto Decline & Ops Review)"]
   ```
 - **Performance:** **PR-AUC: 0.8541** | **ROC-AUC: 0.9782**. Captures $>85\%$ of fraudulent dollars while maintaining an ultra-low False Positive Rate ($<0.05\%$).
 
@@ -559,6 +554,6 @@ ruff check ai/ backend/ frontend/ research/ tests/ scripts/
 
 ## 📜 License & Acknowledgments
 
-- **Platform Code:** Distributed under the [MIT License](https://opensource.org/licenses/MIT).
-- **Documentation & Research Artifacts:** Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-- **Benchmark Datasets:** UCI Machine Learning Repository, Kaggle Public Datasets, and Université Libre de Bruxelles (ULB) Machine Learning Group.
+- **Project License:** This project is open-source and licensed under the [MIT License](LICENSE) &mdash; see the [LICENSE](LICENSE) file for full details.
+- **Academic Citation:** The feature engineering harmonization framework adapts peer-reviewed methodology published in *Computers, Materials & Continua (CMC)*, 2025 ([DOI: 10.32604/cmc.2025.059942](https://www.techscience.com/cmc/v82n3/59942)).
+- **Benchmark Datasets:** Public financial benchmarks provided for research & evaluation courtesy of the UCI Machine Learning Repository, Kaggle Public Datasets, and the Université Libre de Bruxelles (ULB) Machine Learning Group.
